@@ -33,7 +33,7 @@
             @php
                 $isSalesActive = Request::is('admin/sales-create', 'admin/salesperproduct', 'admin/salesperperson');
             @endphp
-            <li class="treeview {{ $isSalesActive ? 'active' : '' }}">
+            {{-- <li class="treeview {{ $isSalesActive ? 'active' : '' }}">
                 <a href="#">
                     <i class="fa fa-bookmark"></i> <span>Sales</span>
                     <i class="fa fa-angle-left pull-right"></i>
@@ -46,6 +46,12 @@
                     <li class={{ Request::is('admin/salesperperson') ? 'active' : '' }}><a href="{{ url('admin/salesperperson') }}"><i class="fa fa-angle-double-right"></i> Sales
                             Person</a></li>
                 </ul>
+            </li> --}}
+            <li class={{ Request::is('admin/sales-create') ? 'active' : '' }}>
+                <a href="{{ route('admin.sales.create') }}">
+                    <i class="fa fa-plus"></i> <span>Create Sale</span>
+                    {{-- <small class="badge pull-right bg-red">3</small> --}}
+                </a>
             </li>
             <li class={{ Request::is('admin/sales-list') ? 'active' : '' }}>
                 <a href="{{ route('admin.sales.list') }}">
@@ -67,6 +73,16 @@
             <li class={{ Request::is('admin/sales-graph') ? 'active' : '' }}>
                 <a href="{{ route('admin.graph') }}">
                     <i class="fa fa-signal"></i> <span>Graph View</span>
+                </a>
+            </li>
+            <li class={{ Request::is('admin/salesperproduct') ? 'active' : '' }}>
+                <a href="{{ url('admin/salesperproduct') }}">
+                    <i class="fa fa-bell"></i> <span>Average product</span>
+                </a>
+            </li>
+            <li class={{ Request::is('admin/salesperperson') ? 'active' : '' }}>
+                <a href="{{ url('admin/salesperperson') }}">
+                    <i class="fa fa-users"></i> <span>Sales Person</span>
                 </a>
             </li>
             <li>

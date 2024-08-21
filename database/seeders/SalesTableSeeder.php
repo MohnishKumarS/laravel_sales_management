@@ -16,6 +16,7 @@ class SalesTableSeeder extends Seeder
     {
         $faker = Faker::create();
 
+        $users_ID = DB::table('users')->pluck('id')->toArray();
         $products = [
             // Sports and Toys
             'Sports Shoe', 'Basketball', 'Cricket Bat', 'Football', 'Tennis Racket',
@@ -33,12 +34,14 @@ class SalesTableSeeder extends Seeder
             'Analog Watch', 'Digital Watch', 'Luxury Watch', 'Fitness Band', 'Smart Glasses',
             'Wallet', 'Handbag', 'Belt', 'Sunglasses', 'Cufflinks'
         ];
+        
 
         $salespersons = ['Sam', 'Joes Daniel', 'Balaji', 'Leelavathi', 'Siva','Manoj'];
 
         foreach ($products as $product) {
             DB::table('sales')->insert([
                 'product_name' => $product,
+                'user_id' => $faker->randomElement($users_ID),
                 'sales_amount' => $faker->numberBetween(10000, 90000),
                 'sales_date' => $faker->dateTimeBetween('-1 year', 'now')->format('Y-m-d'),
                 'sales_person' => $faker->randomElement($salespersons),

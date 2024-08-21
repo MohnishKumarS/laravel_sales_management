@@ -24,7 +24,8 @@ Route::get('/', [UserController::class, 'index']);
 Route::controller(SaleController::class)->group(function () {
     Route::get('/create-sale', 'create_sale')->name('sale.create');
     Route::post('/store-sale', 'store_sale')->name('sale.store');
-    Route::get('/edit-sale/{id}', 'edit_sale')->name('sale.edit');
+    // Route::get('/edit-sale/{id}', 'edit_sale')->name('sale.edit')->middleware('can:editSale,id');
+    Route::get('/edit-sale/{id}', 'edit_sale')->name('sale.edit')->can('editSale','id');
     Route::put('/update-sale/{id}', 'update_sale')->name('sale.update');
     Route::delete('/delete-sale/{id}', 'delete_sale')->name('sale.delete');
 });

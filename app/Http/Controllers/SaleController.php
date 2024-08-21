@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Sale;
 use Illuminate\Http\Request;
+use Illuminate\Auth\Access\AuthorizationException;
 
 class SaleController extends Controller
 {
@@ -31,11 +32,21 @@ class SaleController extends Controller
         return redirect('/')->with('status', 'success')->with('title', 'Sales added successfully');
     }
 
-    public function edit_sale($id)
+    public function edit_sale(Sale $id)
     {
-        $sale = Sale::find($id);
+        return $id;
+        // $sale = Sale::find($id);
+        // dd(auth()->user()->id, $sale->user_id);
+//   $this->authorize('editSale', $sale);
+ return view('sales.edit', compact('sale'));
         if ($sale) {
-            return view('sales.edit', compact('sale'));
+            try {
+                $this->authorize('editSale', $sale);
+                return view('sales.edit', compact('sale'));
+            } catch (AuthorizationException $e) {
+                return redirect('/')->with('status', 'error')->with('title', 'Unauthorized! You cannot edit this sale.');
+            }
+          
         } else {
             return redirect('/')->with('status', 'error')->with('title', 'Data not found!');
         }

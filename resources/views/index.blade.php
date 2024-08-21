@@ -19,7 +19,7 @@
                                 <th scope="col">Amount</th>
                                 <th scope="col">Date</th>
                                 <th scope="col">Sales Person</th>
-                                {{-- <th scope="col">Action</th> --}}
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -33,7 +33,7 @@
                                     <td>{{ $val->sales_amount }}</td>
                                     <td>{{ $val->sales_date }}</td>
                                     <td>{{ $val->sales_person }}</td>
-                                    {{-- <td>
+                                    <td>
                                       <div>
                                         <a href="{{ route('sale.edit', $val->id) }}" class="btn btn-primary btn-sm"><i
                                                 class="fa-solid fa-pen-to-square"></i></a>
@@ -45,7 +45,7 @@
                                                     class="fa-solid fa-trash-can"></i></button>
                                         </form>
                                     </div>
-                                    </td> --}}
+                                    </td>
                                 </tr>
                             @endforeach
 
