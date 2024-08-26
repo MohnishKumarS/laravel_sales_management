@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PdfController;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AdminController;
@@ -20,6 +21,9 @@ use App\Http\Controllers\AdminController;
 */
 
 Route::get('/', [UserController::class, 'index']);
+
+// send sms
+Route::get('sendsms',[HomeController::class,'send_sms']);
 
 Route::controller(SaleController::class)->group(function () {
     Route::get('/create-sale', 'create_sale')->name('sale.create');
